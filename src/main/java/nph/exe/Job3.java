@@ -95,10 +95,12 @@ public abstract class Job3 extends SparkContextPlus {
                 .collect(Collectors.toList());
         for (Field f : configuredFields) {
             String propertyName = f.getAnnotation(Config.class).value();
-            String propertyValue = props.getProperty(propertyName);
-            log.info("real key-value: " + propertyName + "-" + propertyValue);
-            f.setAccessible(true);
-            f.set(this, propertyValue);
+            if (props.containsKey(propertyName)) {
+                String propertyValue = props.getProperty(propertyName);
+                log.info("real key-value: " + propertyName + "-" + propertyValue);
+                f.setAccessible(true);
+                f.set(this, propertyValue);
+            }
         }
     }
 
