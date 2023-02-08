@@ -76,9 +76,11 @@ public abstract class Job3 extends SparkContextPlus {
                 .collect(Collectors.toList());
         for (Field f : parameterizedFields) {
             String paramName = f.getAnnotation(Param.class).value();
-            String paramValue = cmd.getOptionValue(paramName);
-            f.setAccessible(true);
-            f.set(this, paramValue);
+            if (cmd.hasOption(paramName)) {
+                String paramValue = cmd.getOptionValue(paramName);
+                f.setAccessible(true);
+                f.set(this, paramValue);
+            }
         }
     }
 
