@@ -9,7 +9,6 @@ import java.util.Date;
 
 public class NotificationUtils {
 	private static Logger log = Logger.getLogger(NotificationUtils.class);
-	private static String dateLog;
 
 	public static void notifyError(Class wh, String[] args, Exception e) throws IOException {
 		Date date = new Date();
