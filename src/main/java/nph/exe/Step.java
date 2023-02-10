@@ -1,5 +1,8 @@
 package nph.exe;
 
+/**
+ * Step class store process logic
+ */
 public class Step {
 
     private boolean skippedOnFalse;
